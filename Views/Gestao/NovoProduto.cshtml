@@ -1,0 +1,38 @@
+﻿@model pdvPRO.DTO.ProdutoDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>Novo produto</h3>
+<hr />
+<form class="form-horizontal" asp-controller="Produtos" asp-action="Salvar" method="post">
+    <input type="hidden" asp-for="Id" value="0" />
+
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do produto">
+    <span asp-validation-for="Nome"></span><br />
+
+    <label asp-for="CategoriaId">Categoria</label>
+    <select class="form-control" asp-for="CategoriaId" asp-items='@(new SelectList(@ViewBag.Categorias,"Id","Nome"))'></select>
+    <br />
+
+    <label asp-for="FornecedorId">Fornecedor</label>
+    <select class="form-control" asp-for="FornecedorId" asp-items='@(new SelectList(@ViewBag.Fornecedores,"Id","Nome"))'></select>
+    <br />
+
+    <label asp-for="PrecoCusto">Preço de custo</label>
+    <input class="form-control" asp-for="PrecoCusto" type="number" step="any" placeholder="R$ 00.00" />
+    <span asp-validation-for="PrecoCusto"></span><br />
+
+    <label asp-for="PrecoVenda">Preço de venda</label>
+    <input class="form-control" asp-for="PrecoVenda" type="number" step="any" placeholder="R$ 00.00" />
+    <span asp-validation-for="PrecoVenda"></span><br />
+
+    <label asp-for="UnidadeMedida">Unidade de medida</label>
+    <select class="form-control" asp-for="UnidadeMedida">
+        <option value="0">Litro</option>
+        <option value="1">Kilo</option>
+        <option value="2">Unidade</option>
+    </select>
+
+    <br /><button class="btn btn-success">Cadastrar</button>
+</form>
