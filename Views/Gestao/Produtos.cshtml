@@ -9,7 +9,22 @@
 
 <script>
     $(document).ready(function () {
-        $('#produtos').DataTable();
+        $('#produtos').DataTable({
+            "info": false,
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ registros por página",
+                "zeroRecords": "Nada encontrado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum registro disponível",
+                "search": "Buscar:",
+                "paginate": {
+                    "first": "Primeiro",
+                    "last": "Último",
+                    "next": "Próximo",
+                    "previous": "Anterior"
+                }
+            }
+        });
     });
 </script>
 
@@ -53,8 +68,8 @@
             <td>
                 <a class="btn btn-primary" href="Gestao/EditarProduto/@produto.Id">Editar</a>
 
-                <form style="display:inline;">
-                    <input type="hidden" name="id" id="id">
+                <form style="display:inline;" asp-controller="Produtos" asp-action="Deletar">
+                    <input type="hidden" name="id" id="id" value="@produto.Id">
                     <button class="btn btn-danger">Deletar</button>
 
                 </form>

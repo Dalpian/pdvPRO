@@ -66,7 +66,7 @@ namespace pdvPRO.Controllers
 
         public IActionResult Produtos()
         {
-            var produtos = database.Produtos.Include(p => p.Categoria).Include(p => p.Fornecedor).ToList();
+            var produtos = database.Produtos.Include(p => p.Categoria).Include(p => p.Fornecedor).Where(p => p.Status ==true).ToList();
             return View(produtos);
         }
 
@@ -91,6 +91,30 @@ namespace pdvPRO.Controllers
             ViewBag.Categorias = database.Categorias.ToList();
             ViewBag.Fornecedores = database.Fornecedores.ToList();
             return View(produtoView);
+        }
+
+        public IActionResult Promocoes()
+        {
+            var promocoes = database.Promocoes.Include(p => p.Produto).Where(i => i.Status== true).ToList();
+            return View(promocoes);
+        }
+
+        public IActionResult NovaPromocao()
+        {
+            ViewBag.Produtos = database.Produtos.ToList();
+            return View();
+        }
+
+        public IActionResult EditarPromocao(int id)
+        {
+            var promocao = database.Promocoes.Include(p => p.Produto).First(p => p.Id == id);
+            PromocaoDTO promo = new PromocaoDTO();
+            promo.Id = promocao.Id;
+            promo.Nome = promocao.Nome;
+            promo.Porcentagem = promocao.Porcentagem;
+            promo.ProdutoID = promocao.Produto.Id;
+            ViewBag.Produtos = database.Produtos.ToList();
+            return View(promo);
         }
     }
 }

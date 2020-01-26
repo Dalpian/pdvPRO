@@ -32,7 +32,7 @@ namespace pdvPRO.Controllers
                 produto.Status = true;
                 database.Produtos.Add(produto);
                 database.SaveChanges();
-                return RedirectToAction("Produtos","Gestao");
+                return RedirectToAction("Produtos", "Gestao");
             }
             else
             {
@@ -49,7 +49,7 @@ namespace pdvPRO.Controllers
             {
                 var produto = database.Produtos.First(prod => prod.Id == produtoTemporario.Id);
                 produto.Nome = produtoTemporario.Nome;
-                produto.Categoria = database.Categorias.First(categoria => categoria.Id  == produtoTemporario.CategoriaId);
+                produto.Categoria = database.Categorias.First(categoria => categoria.Id == produtoTemporario.CategoriaId);
                 produto.Fornecedor = database.Fornecedores.First(fornecedor => fornecedor.Id == produtoTemporario.FornecedorId);
                 produto.PrecoCusto = produtoTemporario.PrecoCusto;
                 produto.PrecoVenda = produtoTemporario.PrecoVenda;
@@ -62,5 +62,16 @@ namespace pdvPRO.Controllers
                 return RedirectToAction("Produtos", "Gestao");
             }
         }
+        public IActionResult Deletar(int id)
+        {
+            if (id > 0)
+            {
+                var produto = database.Produtos.First(prod => prod.Id == id);
+                produto.Status = false;
+                database.SaveChanges();
+            }
+            return RedirectToAction("Produtos", "Gestao");
+        }
     }
+
 }
