@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using pdvPRO.Data;
 using pdvPRO.DTO;
 using pdvPRO.Models;
@@ -62,6 +63,7 @@ namespace pdvPRO.Controllers
                 return RedirectToAction("Produtos", "Gestao");
             }
         }
+
         public IActionResult Deletar(int id)
         {
             if (id > 0)
@@ -71,6 +73,29 @@ namespace pdvPRO.Controllers
                 database.SaveChanges();
             }
             return RedirectToAction("Produtos", "Gestao");
+        }
+        [HttpPost]
+        public IActionResult Produto(int id)
+        {
+            if (id > 0)
+            {
+                var produto = database.Produtos.Where(p => p.Status==true).Include(p=> p.Categoria).Include(p => p.Fornecedor).First(p => p.Id == id);
+                if (produto != null)
+                {
+                    Response.StatusCode = 200;
+                    return Json(produto);
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return Json(null);
+                }
+            }
+            else
+            {
+                Response.StatusCode = 404;
+                return Json(null);
+            }
         }
     }
 
