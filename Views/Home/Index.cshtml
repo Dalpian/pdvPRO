@@ -36,24 +36,21 @@
                 <br>
                 <h3>Informações</h3>
                 <hr>
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="produtoForm">
                     <label>Nome</label>
-                    <input type="text" class="form-control" placeholder="Nome do produto" disabled>
+                    <input type="text" class="form-control" placeholder="Nome do produto" disabled id="campoNome">
                     <br>
                     <label>Categoria</label>
-                    <input type="text" class="form-control" placeholder="Categoria" disabled>
+                    <input type="text" class="form-control" placeholder="Categoria" disabled id="campoCategoria">
                     <br>
                     <label>Fornecedor</label>
-                    <input type="text" class="form-control" placeholder="Fornecedor" disabled>
+                    <input type="text" class="form-control" placeholder="Fornecedor" disabled id="campoFornecedor">
                     <br>
-                    <label>Preço de custo</label>
-                    <input class="form-control" type="number" step="any" placeholder="10.99" disabled>
-                    <span></span><br>
                     <label>Preço de venda</label>
-                    <input class="form-control" type="number" step="any" placeholder="20.50" disabled><br>
+                    <input class="form-control" type="number" step="any" placeholder="R$" disabled id="campoPrecoDeVenda"><br>
 
                     <label>Quantidade</label>
-                    <input class="form-control" type="number" step="any" placeholder="Quantidade"><br>
+                    <input class="form-control" type="number" step="any" placeholder="Quantidade" id="campoQuantidade"><br>
 
                     <button class="btn btn-success">Confirmar</button>
                 </form>
@@ -85,12 +82,48 @@
             <hr>
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-success">Finalizar Compra</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Finalizar Compra</button>
                 <button type="button" class="btn btn-danger">Cancelar compra</button>
             </div>
             <div class="col-sm-4"></div>
         </div>
         <hr>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Finalizar venda</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h2>Total: R$ <span id="totalVenda"></span></h2>
+                    <hr>
+                    <p>Valor pago:</p>
+                    <input type="number" placeholder="R$" class="form-control" id="valorPago">
+                    <p>Troco:</p>
+                    <input type="number" disabled class="form-control" id="troco">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div id="posvenda">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="fecharModal">Fechar</button>
+                    </div>
+                    <div id="prevenda">
+                        <button type="button" class="btn btn-success" id="finalizarVendaBTN">Finalizar venda</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </body>

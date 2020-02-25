@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -27,8 +28,8 @@ namespace pdvPRO.Controllers
                 produto.Nome = produtoTemporaria.Nome;
                 produto.Categoria = database.Categorias.First(categoria => categoria.Id == produtoTemporaria.CategoriaId);
                 produto.Fornecedor = database.Fornecedores.First(fornecedor => fornecedor.Id == produtoTemporaria.FornecedorId);
-                produto.PrecoCusto = produtoTemporaria.PrecoCusto;
-                produto.PrecoVenda = produtoTemporaria.PrecoVenda;
+                produto.PrecoCusto = float.Parse(produtoTemporaria.PrecoCustoString, CultureInfo.InvariantCulture.NumberFormat);
+                produto.PrecoVenda = float.Parse(produtoTemporaria.PrecoVendaString, CultureInfo.InvariantCulture.NumberFormat);
                 produto.UnidadeMedida = produtoTemporaria.UnidadeMedida;
                 produto.Status = true;
                 database.Produtos.Add(produto);
@@ -80,6 +81,15 @@ namespace pdvPRO.Controllers
             if (id > 0)
             {
                 var produto = database.Produtos.Where(p => p.Status==true).Include(p=> p.Categoria).Include(p => p.Fornecedor).First(p => p.Id == id);
+
+                if (produto != null)
+                {
+                    var estoque = database.Estoques.First(e => e.Produto.Id == produto.Id);
+                    if(estoque == null){
+                        produto = null;
+                    }
+                }
+
                 if (produto != null)
                 {
                     Response.StatusCode = 200;

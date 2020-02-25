@@ -116,5 +116,23 @@ namespace pdvPRO.Controllers
             ViewBag.Produtos = database.Produtos.ToList();
             return View(promo);
         }
+        public IActionResult Estoque()
+        {
+            var listaDeEstoque = database.Estoques.Include(e => e.Produto).ToList();
+            return View(listaDeEstoque);
+
+        }
+
+        public IActionResult NovoEstoque()
+        {
+            ViewBag.Produtos = database.Produtos.ToList();
+            return View();
+        }
+
+        public IActionResult EditarEstoque(int id)
+        {
+            var estoque = database.Estoques.First(e => e.Id == id);
+            return View(estoque);
+        }
     }
 }

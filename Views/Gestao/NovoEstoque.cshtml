@@ -1,0 +1,15 @@
+﻿@model pdvPRO.Models.Estoque
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>Novo estoque</h3>
+<hr />
+<form class="form-horizontal" asp-controller="Estoque" asp-action="Atualizar" method="post">
+    <label asp-for="Produto">Produto</label>
+    <select class="form-control" asp-for="ProdutoId" asp-items='@(new SelectList(@ViewBag.Produtos,"Id","Nome"))'></select>
+
+    <label asp-for="Quantidade">Quantidade</label>
+    <input asp-for="Quantidade" placeholder="Informe a quantidade" class="form-control">
+    <br />
+    <button class="btn btn-success">Cadastrar</button>
+</form>

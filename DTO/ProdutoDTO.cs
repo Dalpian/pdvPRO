@@ -25,8 +25,15 @@ namespace pdvPRO.DTO
         [Required(ErrorMessage = "Preço de custo do produto é obrigatório")]
         public float PrecoCusto { get; set; }
 
+        [Required(ErrorMessage = "Preço de custo do produto é obrigatório")]
+        public string PrecoCustoString { get; set; }
+
+
         [Required(ErrorMessage = "Preço de venda é obrigatório")]
         public float PrecoVenda { get; set; }
+
+        [Required(ErrorMessage = "Preço de venda é obrigatório")]
+        public string PrecoVendaString { get; set; }
 
         [Required(ErrorMessage = "Unidade de medida do produto é obrigatória")]
         [Range(0,2,ErrorMessage ="Unidade de medida inválida")]

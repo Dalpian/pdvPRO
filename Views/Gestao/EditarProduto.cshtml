@@ -20,12 +20,12 @@
     <br />
 
     <label asp-for="PrecoCusto">Preço de custo</label>
-    <input class="form-control" asp-for="PrecoCusto" type="number" step="any" placeholder="R$ 00.00" />
-    <span asp-validation-for="PrecoCusto"></span><br />
+    <input class="form-control" asp-for="PrecoCustoString" type="text" placeholder="R$ 00.00" />
+    <span asp-validation-for="PrecoCustoString"></span><br />
 
     <label asp-for="PrecoVenda">Preço de venda</label>
-    <input class="form-control" asp-for="PrecoVenda" type="number" step="any" placeholder="R$ 00.00" />
-    <span asp-validation-for="PrecoVenda"></span><br />
+    <input class="form-control" asp-for="PrecoVendaString" type="text" placeholder="R$ 00.00" />
+    <span asp-validation-for="PrecoVendaString"></span><br />
 
     <label asp-for="UnidadeMedida">Unidade de medida</label>
     <select class="form-control" asp-for="UnidadeMedida">

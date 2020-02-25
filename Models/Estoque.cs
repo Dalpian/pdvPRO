@@ -10,6 +10,7 @@ namespace pdvPRO.Models
         public int Id { get; set; }
         public Produto Produto { get; set; }
         public float Quantidade { get; set; }
+        public int ProdutoId { get; set; }
 
     }
 }

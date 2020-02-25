@@ -1,0 +1,15 @@
+﻿@model pdvPRO.Models.Estoque
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>Editar estoque</h3>
+<hr />
+<form class="form-horizontal" asp-controller="Estoques" asp-action="Atualizar" method="post">
+    <input type="hidden" asp-for="Id"/>
+
+    <label asp-for="Quantidade">Quantidade</label>
+    <input type="text" asp-for="Quantidade" class="form-control" placeholder="Nova quantidade">
+    <span asp-validation-for="Quantidade"></span>
+    
+    <br /><button class="btn btn-success">Atualizar</button>
+</form>
